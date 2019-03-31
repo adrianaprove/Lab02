@@ -29,8 +29,6 @@ public class AlienDictionary {
 			dizionario.add(new WordEnhanced(alienWord, translation)); 
 		else
 			cercaParola(alienWord).addTranslation(translation);
-		
-		
 	}
 	
 	public String translateWord(String alienWord) {
