@@ -35,6 +35,7 @@ public class AlienController {
     	 
     	dizionario=new AlienDictionary(); 
     	//txtResult.setText("Welcome to Alien Dictionary v2019"); 
+    	//lo scrivo su Scene Builder nel Prompt Text del txtResult
     }
   
     
