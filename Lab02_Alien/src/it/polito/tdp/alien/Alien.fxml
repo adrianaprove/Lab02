@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -29,12 +31,21 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Alien Text" />
-                  <TextField fx:id="txtWord" promptText="Insert the text..." />
-                  <Button fx:id="btnTranslate" mnemonicParsing="false" onAction="#doTranslate" text="Translate" />
+                  <HBox alignment="CENTER" prefHeight="90.0" prefWidth="402.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="72.0" text="Alien Text" />
+                        <TextField fx:id="txtWord" prefHeight="25.0" prefWidth="228.0" promptText="Insert the text..." />
+                        <Button fx:id="btnTranslate" mnemonicParsing="false" onAction="#doTranslate" prefHeight="25.0" prefWidth="78.0" text="Translate" />
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="90.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../Documents/U%20N%20I%20V%20E%20R%20S%20I%20T%20Y/T%20d%20P/download.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
-            <TextArea fx:id="txtResult" prefHeight="313.0" prefWidth="493.0" />
+            <TextArea fx:id="txtResult" prefHeight="313.0" prefWidth="493.0" promptText="Welcome to Alien Dictionary v2019" />
             <Button fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" text="Clear Text" />
          </children>
       </VBox>

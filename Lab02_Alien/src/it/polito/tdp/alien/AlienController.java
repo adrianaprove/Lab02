@@ -1,14 +1,7 @@
 package it.polito.tdp.alien;
 
-/**
- * Sample Skeleton for 'Alien.fxml' Controller Class
- */
-
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,7 +23,7 @@ public class AlienController {
     @FXML
     private Button btnReset;
     
-    AlienDictionary dizionario; 
+    private AlienDictionary dizionario; 
         
     
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -41,35 +34,33 @@ public class AlienController {
     	assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Alien.fxml'.";
     	 
     	dizionario=new AlienDictionary(); 
+    	//txtResult.setText("Welcome to Alien Dictionary v2019"); 
     }
   
     
     @FXML
     void doTranslate(ActionEvent event) {
     	String s=txtWord.getText(); 
-    	System.out.println(s); 
-    	String[] info=s.split(" "); 
-    	if(info.length==2) {
-    		//STO INSERENDO UNA NUOVA PAROLA NEL DIZIONARIO
-    		String parola=info[0].toLowerCase(); 
-    		String traduzione=info[1].toLowerCase(); 
+    	String [] scritto=s.split(" "); 
+    	if(scritto.length==2) {
+    		//VOGLIO INSERIRE UNA NUOVA PAROLA
+    		String parola=scritto[0].trim().toLowerCase(); 
+    		String traduzione=scritto[1].trim().toLowerCase(); 
+    		//controllo sulle stringhe inserite
     		if(parola.matches("[a-zA-Z]+") && traduzione.matches("[a-zA-Z]+")) {
     			dizionario.addWord(parola, traduzione);
-    			//System.out.println("Salvata parola: "+parola+" con traduzione: "+traduzione+"\n"); 
-    			//txtResult.appendText("Salvata parola: "+parola+" con traduzione: "+traduzione+"\n");
+    		}
     	}
-    		else
-    			System.out.println("non matcha");
+    	else if(scritto.length==1) {
+    		//VOGLIO CERCARE LA TRADUZIONE DI QUELLA PAROLA
+    		String parola=scritto[0].trim().toLowerCase(); 
+    		//controllo sulla stringa inserita
+    		if(parola.matches("[a-zA-Z]+")) {
+    			String traduzione=dizionario.translateWord(parola);
+    			txtResult.appendText(traduzione+"\n");
+    		}
     	}
-    	else if(info.length==1) {
-    		//STO CERCANDO LA TRADUZIONE DI QUELLA PAROLA
-    		String parola=info[0].toLowerCase(); 
-    		String traduzione=""; 
-    		if(parola.matches("[a-zA-Z]+"))
-    			traduzione=dizionario.translateWord(parola); 
-    		txtResult.appendText(traduzione+"\n");
-    	}
-    	    	
+    	txtWord.clear();
     }
     
     @FXML

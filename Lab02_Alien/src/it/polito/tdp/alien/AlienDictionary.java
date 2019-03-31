@@ -1,33 +1,39 @@
 package it.polito.tdp.alien;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class AlienDictionary {
 	
-	List <Word> lista=new LinkedList<Word>();
+	//Map <String,Word> dizionario=new TreeMap <String, Word>(); 
+	LinkedList <Word> dizionario; 
 	
+	public AlienDictionary() {
+		this.dizionario=new LinkedList <Word>();
+	}
+
 	public void addWord(String alienWord, String translation) {
-		boolean trovato=false; 
-		Word w=new Word(alienWord, translation); 
-		for(int i=0; i<lista.size() && !trovato; i++) {
-			if(lista.get(i).getAlienWord().compareTo(alienWord)==0) {
-				trovato=true; 
-				lista.get(i).setTranslation(translation);
-				}
-		}
-		if(!trovato)
-			lista.add(w); 
-		}
+		if(cercaParola(alienWord)==null)
+			dizionario.add(new Word(alienWord, translation)); 
+		else
+			cercaParola(alienWord).setTranslation(translation);
+	}
 	
-	public String translateWord(String word) {
-		for(int i=0; i<lista.size(); i++) {
-			if(lista.get(i).getAlienWord().compareTo(word)==0)
-				return lista.get(i).getTranslation(); 
+	public String translateWord(String alienWord) {
+		if(cercaParola(alienWord)==null)
+			return null; 
+		else
+			return cercaParola(alienWord).getTranslation(); 
+	}
+	
+	public Word cercaParola(String alienWord) {
+		for(int i=0; i<dizionario.size(); i++) {
+			if(dizionario.get(i).equals(new Word(alienWord, null))){ //funziona?
+					return dizionario.get(i); 
+			}
 		}
-		return null; 
-	}
-			
+		return null;
 	}
 
-
+}
